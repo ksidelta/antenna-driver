@@ -7,13 +7,13 @@
   </tr>
   </thead>
   <tbody>
-  {#each data as entry (data.id)}
+  {#each data as entry (entry.id)}
     <tr>
       <td>
         {entry.name}
       </td>
       <td>
-        <input type="checkbox" class="toggle" bind:checked="{entry.state}" />
+        <input type="checkbox" class="toggle" checked="{entry.state}" on:click={toggle(entry.id)}/>
       </td>
       <td class="p-0">
         <div tabindex="0" class="collapse collapse-arrow ">
@@ -32,7 +32,12 @@
 </table>
 
 <script>
-  export let data;
+  export let dataStore;
+
+  export let toggle;
+
+  let data = []
+  dataStore.subscribe(value =>{ data = value; console.log("XD")})
 
   import "../app.css";
 </script>
